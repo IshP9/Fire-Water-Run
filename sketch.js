@@ -79,8 +79,8 @@ function draw() {
 
   }
 
-  text("Score :" + score, 600, 100);
-  console.log(score);
+  
+  //console.log(score);
   if (gameState == PLAY) {
     ground.velocityX = -4
     player.velocityY = player.velocityY + 0.5;
@@ -118,16 +118,22 @@ function draw() {
 
   }
   else if (gameState == END) {
+    console.log(gameState);
     ground.velocityX = 0
-    obstacleGroup.setVelocityXEach(0)
+   // obstacleGroup.setVelocityXEach(0)
+    obstacleGroup.destroyEach();
+    treatGroup.destroyEach();
     player.visible = false;
-    obstacle.visible = false;
-    treats.visible = false;
-    text.display(GAME_OVER);
+   
+  //  treats.visible = false;
+    background.visible = false;
+    textSize(30);
+    fill("red");
+    text("Game Over",250,250);
   }
   player.collide(ground);
   drawSprites();
-
+  text("Score :" + score, 600, 100);
 
   
 }
@@ -214,3 +220,9 @@ function createTreat() {
     treatGroup.add(treats);
   }
 }
+
+ function GAME_OVER(){
+   if (gameState ==END) {
+     
+   }
+ }
